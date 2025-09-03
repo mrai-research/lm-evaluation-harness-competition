@@ -39,6 +39,8 @@ dependencies = [
     "dill",
     "word2number",
     "more_itertools",
+    "matplotlib",
+    "jupyter",
 ]
 
 [tool.setuptools.packages.find]
