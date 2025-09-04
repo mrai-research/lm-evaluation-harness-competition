@@ -1,4 +1,23 @@
-# Language Model Evaluation Harness
+# Current Repo DOc
+
+## submission.sh
+
+This script will create the changes to the current up-to-date repo from "lm-evaluation-harness".
+
+TO be able to run this script the following sequence of commands must be passed:
+
+
+```chmod +x submission.sh```
+
+
+Then:
+
+
+```./submission.sh "TASK_NAME" "METRICS" "HF_TOKEN"```
+
+
+
+## Language Model Evaluation Harness
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10256836.svg)](https://doi.org/10.5281/zenodo.10256836)
 
