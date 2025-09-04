@@ -71,8 +71,11 @@ cd "../$SUBMISSION_DIR"
 # The zip command packages the contents of the current directory.
 zip -r ../submission.zip ./*
 mv ../submission.zip ./
-cd ..
-cp -r "$SUBMISSION_DIR" ../"$REPO_DIR"/
+cd ../..
+
+cp -r tmp_lm_eval/"$SUBMISSION_DIR" "$REPO_DIR"/
+rm -rf tmp_lm_eval
+
 
 
 
