@@ -29,15 +29,7 @@ mkdir tmp_lm_eval
 cd tmp_lm_eval
 git clone https://github.com/tiiuae/lm-evaluation-harness-competition
 
-cd "$REPO_DIR"
-cp -r examples/ ../
-rm -rf *
-cd ../../
-cp -r "$REPO_DIR"/ tmp_lm_eval/"$REPO_DIR"/
-rm -rf tmp_lm_eval/"$REPO_DIR"/examples
-cp -r tmp_lm_eval/examples/ tmp_lm_eval/"$REPO_DIR"/
-
-
+cp -r ../"$REPO_DIR"/lm_eval "$REPO_DIR"
 
 
 # --- Prepare Patch File ---
@@ -45,7 +37,7 @@ cp -r tmp_lm_eval/examples/ tmp_lm_eval/"$REPO_DIR"/
 # inside the repository (e.g., in 'lm_eval/tasks/').
 
 echo "Staging all new and modified files..."
-cd tmp_lm_eval/"$REPO_DIR"
+cd "$REPO_DIR"
 git add .
 
 # Verify that there are changes to commit.
