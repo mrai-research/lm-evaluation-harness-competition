@@ -1,17 +1,13 @@
 dataset_path: edinburgh-dawg/mmlu-redux-2.0
 test_split: test
 fewshot_split: test
-fewshot_config:
-  sampler: first_n
 output_type: multiple_choice
-doc_to_text: "{{question.strip()}}\nA. {{choices[0]}}\nB. {{choices[1]}}\nC. {{choices[2]}}\nD. {{choices[3]}}\nAnswer:"
-doc_to_choice: ["A", "B", "C", "D"]
-doc_to_target: answer
+doc_to_text: "Question:\n{{question}}\nOptions:\n{{'.\n'.join(choices)}}.\nAnswer: "
+doc_to_target: !function utils.process_answer
+doc_to_choice: !function utils.safe_process_choice
 metric_list:
   - metric: acc
     aggregation: mean
     higher_is_better: true
 metadata:
   version: 1.0
-dataset_kwargs:
-  trust_remote_code: true
