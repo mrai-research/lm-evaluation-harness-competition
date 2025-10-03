@@ -55,8 +55,8 @@ def process_collection(subfolder: Path) -> list[pd.DataFrame]:
     return results
 
 
-def main(task: Positional[str]) -> None:
-    folders = (Path("results") / task).glob("*/")
+def main(task: Positional[str | Path]) -> None:
+    folders = Path(task).glob("*/")
     df_results: list[pd.DataFrame] = []
 
     with ProcessPoolExecutor() as executor:
@@ -67,9 +67,11 @@ def main(task: Positional[str]) -> None:
 
     logger.info(f"Gathered final dataframe with shape: {final_df.shape}")
     final_df = final_df.sort_values(by=['model', 'arch', 'iteration', 'index', 'choice_index']).reset_index(drop=True)
-    final_df.to_feather(f"results_{task}.feather")
 
-    logger.info(f"Saved final dataframe to results_{task}.feather")
+    task_name = str(task).replace("/", "_").replace("\\", "_")
+    final_df.to_feather(f"results_{task_name}.feather")
+
+    logger.info(f"Saved final dataframe to results_{task_name}.feather")
 
 if __name__ == "__main__":
     cli(main)
