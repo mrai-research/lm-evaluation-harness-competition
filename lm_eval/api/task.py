@@ -1645,6 +1645,7 @@ class ConfigurableTask(Task):
                     if "brier_score" in use_metric
                     else {}
                 ),
+                **({"likelihood_diff": (lls[gold], [lls[i] for i in range(len(lls)) if i != gold])} if "likelihood_diff" in use_metric else {}),
             }
 
             if "acc_mutual_info" in use_metric:

@@ -45,3 +45,8 @@ examples/wandb/
 
 # PyInstaller
 *.spec
+
+slurm.sh
+log.err
+log.out
+*json*
