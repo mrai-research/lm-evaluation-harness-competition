@@ -67,6 +67,18 @@ def f1_score(items):
     return np.max(fscore)
 
 
+@register_aggregation("likelihood_diff")
+def likelihood_diff(items):
+    diffs = []
+    for item in items:
+        target_ll, other_lls = item
+        max_other_ll = mean(other_lls)
+        # calculate diff in prob space, then convert back to log space
+        prob_space_diff = math.exp(target_ll) - math.exp(max_other_ll)
+        diffs.append(math.log(max(prob_space_diff, 1e-20)))
+    return mean(diffs)
+
+
 @register_aggregation("matthews_corrcoef")
 def matthews_corrcoef(items):
     from sklearn.metrics import matthews_corrcoef
@@ -249,6 +261,16 @@ def exact_match_fn(**kwargs):
     aggregation="perplexity",
 )
 def perplexity_fn(items):  # This is a passthrough function
+    return items
+
+
+@register_metric(
+    metric="likelihood_diff",
+    higher_is_better=True,
+    output_type="multiple_choice",
+    aggregation="likelihood_diff",
+)
+def likelihood_diff_fn(items):
     return items
 
 
