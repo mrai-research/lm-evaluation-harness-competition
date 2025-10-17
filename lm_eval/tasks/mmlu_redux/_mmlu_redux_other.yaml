@@ -1,6 +1,6 @@
-"aggregate_metric_list":
-- "metric": "acc"
-  "weight_by_size": !!bool "true"
+# "aggregate_metric_list":
+# - "metric": "acc"
+#   "weight_by_size": !!bool "true"
 "group": "mmlu_redux_other"
 "group_alias": "other"
 "metadata":
